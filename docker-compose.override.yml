@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  api:
+    environment:
+      - GoogleKey=${GOOGLE_KEY}
+      - RedisConnectionString=redis
+    ports:
+      - "5209:80"
+
+  redis:
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+volumes:  
+  redis_data:
