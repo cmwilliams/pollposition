@@ -2,7 +2,6 @@ version: '3.4'
 
 services:
   api:
-    image: pollpositionapi:${TAG:-latest}
     ports:
       - "5209:80"
     environment:
