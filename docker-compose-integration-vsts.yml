@@ -3,9 +3,6 @@ version: '3.4'
 services:
   api:
     image: designmojo.azurecr.io/pollpositiondocker_api
-    environment:
-      GoogleKey: ${GOOGLE_KEY}
-      RedisConnectionString: redis
    
   integration:
     entrypoint: dotnet test --logger trx --results-directory /var/temp

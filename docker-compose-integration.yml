@@ -1,0 +1,38 @@
+version: '3.4'
+
+services:
+  api:
+    ports:
+      - "5209:80"
+    environment:
+      GoogleKey: ${GOOGLE_KEY}
+      RedisConnectionString: redis
+    build:
+      context: .
+      dockerfile: Api/Dockerfile
+      args:
+        NUGET_SOURCE: ${NUGET_SOURCE}
+    depends_on:
+      - redis
+
+  integration:
+    build: 
+      context: .
+      dockerfile: Tests/Dockerfile
+    environment:
+      - API_URL=http://api
+      - GoogleKey=${GOOGLE_KEY}
+      - RedisConnectionString=redis
+    entrypoint: dotnet test
+    depends_on:
+      - api
+
+  redis:
+    image: redis:3.2-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+volumes:  
+  redis_data:
