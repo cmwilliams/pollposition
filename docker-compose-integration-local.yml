@@ -5,8 +5,8 @@ services:
     ports:
       - "5209:80"
     environment:
-      - GoogleKey=${GOOGLE_KEY}
-      - RedisConnectionString=redis
+      GoogleKey: ${GOOGLE_KEY}
+      RedisConnectionString: redis
     build:
       context: .
       dockerfile: Api/Dockerfile
