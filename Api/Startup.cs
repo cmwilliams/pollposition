@@ -2,14 +2,17 @@
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NJsonSchema;
+using NSwag;
 using NSwag.AspNetCore;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
+using static Microsoft.AspNetCore.Hosting.Internal.HostingApplication;
 
 namespace Api
 {
@@ -40,7 +43,7 @@ namespace Api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, HttpContext context)
         {
             if (env.IsDevelopment())
             {
@@ -56,9 +59,11 @@ namespace Api
             // Enable the Swagger UI middleware and the Swagger generator
             app.UseSwaggerUi(typeof(Startup).GetTypeInfo().Assembly, settings =>
             {
+                
                 settings.GeneratorSettings.DefaultPropertyNameHandling = PropertyNameHandling.CamelCase;
                 settings.PostProcess = document =>
                 {
+                    document.Schemes.Add(context.Request.Scheme == "http" ? SwaggerSchema.Http : SwaggerSchema.Https);
                     document.Info.Version = "v1";
                     document.Info.Title = "Poll Position";
                     document.Info.Description = "Returns elected officials by address";
@@ -74,8 +79,8 @@ namespace Api
 
             app.UseMvc();
 
-            app.Run(context => {
-                context.Response.Redirect("swagger");
+            app.Run(c => {
+                c.Response.Redirect("swagger");
                 return Task.CompletedTask;
             });
 
