@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   api:
-    image: designmojo.azurecr.io/pollposition_api
+    image: designmojo.azurecr.io/pollposition
   integration:
     entrypoint: dotnet test --logger trx --results-directory /var/temp
     volumes:
