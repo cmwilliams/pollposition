@@ -40,10 +40,11 @@ namespace Api
             });
 
             services.AddMediatR();
+            services.AddHttpContextAccessor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, HttpContext context)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IHttpContextAccessor context)
         {
             if (env.IsDevelopment())
             {
@@ -53,8 +54,7 @@ namespace Api
             app.UseStatusCodePagesWithReExecute("/error/{0}");
             app.UseExceptionHandler("/error/500");
 
-            app.UseStaticFiles();
-           
+            app.UseStaticFiles();           
 
             // Enable the Swagger UI middleware and the Swagger generator
             app.UseSwaggerUi(typeof(Startup).GetTypeInfo().Assembly, settings =>
@@ -63,7 +63,7 @@ namespace Api
                 settings.GeneratorSettings.DefaultPropertyNameHandling = PropertyNameHandling.CamelCase;
                 settings.PostProcess = document =>
                 {
-                    document.Schemes.Add(context.Request.Scheme == "http" ? SwaggerSchema.Http : SwaggerSchema.Https);
+                    document.Schemes.Add(context.HttpContext.Request.IsHttps ? SwaggerSchema.Https : SwaggerSchema.Http);
                     document.Info.Version = "v1";
                     document.Info.Title = "Poll Position";
                     document.Info.Description = "Returns elected officials by address";
