@@ -9,6 +9,7 @@ using NJsonSchema;
 using NSwag.AspNetCore;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace Api
 {
@@ -73,11 +74,10 @@ namespace Api
 
             app.UseMvc();
 
-            app.UseDefaultFiles(new DefaultFilesOptions
-            {
-                DefaultFileNames = new List<string> { "/swagger" }
+            app.Run(context => {
+                context.Response.Redirect("swagger");
+                return Task.CompletedTask;
             });
-
 
         }
     }
