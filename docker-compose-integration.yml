@@ -23,8 +23,6 @@ services:
       dockerfile: Tests/Dockerfile
     environment:
       - API_URL=http://pollposition.api
-      - GoogleKey=${GOOGLE_KEY}
-      - RedisConnectionString=redis
     entrypoint: dotnet test
     depends_on:
       - pollposition.api

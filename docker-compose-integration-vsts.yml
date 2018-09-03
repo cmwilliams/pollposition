@@ -5,6 +5,6 @@ services:
     image: designmojo.azurecr.io/pollposition.api:latest
 
   pollposition.integrationtests:
-    entrypoint: dotnet test --logger trx --results-directory /var/temp
+    entrypoint: dotnet test --logger trx --results-directory /var/temp/
     volumes:
-      - /opt/vsts/work/_temp:/var/temp
+      - /opt/vsts/work/_temp:/var/temp/
