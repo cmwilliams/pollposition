@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NJsonSchema;
 using NSwag.AspNetCore;
+using System.Collections.Generic;
 using System.Reflection;
 
 namespace Api
@@ -34,7 +35,7 @@ namespace Api
                 options.InstanceName = "pollposition";
             });
 
-           services.AddMediatR();
+            services.AddMediatR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,11 +45,12 @@ namespace Api
             {
                 app.UseDeveloperExceptionPage();
             }
-           
+
             app.UseStatusCodePagesWithReExecute("/error/{0}");
             app.UseExceptionHandler("/error/500");
 
             app.UseStaticFiles();
+           
 
             // Enable the Swagger UI middleware and the Swagger generator
             app.UseSwaggerUi(typeof(Startup).GetTypeInfo().Assembly, settings =>
@@ -70,6 +72,11 @@ namespace Api
             });
 
             app.UseMvc();
+
+            app.UseDefaultFiles(new DefaultFilesOptions
+            {
+                DefaultFileNames = new List<string> { "/swagger" }
+            });
 
 
         }
