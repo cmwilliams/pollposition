@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   api:
-    image: pollposition
+    image: pollposition_api
     ports:
       - "5209:80"
     environment:
@@ -24,9 +24,7 @@ services:
       - API_URL=http://api
       - GoogleKey=${GOOGLE_KEY}
       - RedisConnectionString=redis
-    entrypoint: dotnet test --logger trx --results-directory /app/Tests/testresults
-    volumes:
-      - ${TEST_RESULT_PATH}:/app/Tests/testresults
+    entrypoint: dotnet test
     depends_on:
       - api
 

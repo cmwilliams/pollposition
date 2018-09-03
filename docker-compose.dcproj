@@ -13,6 +13,7 @@
     <None Include=".env" />
     <None Include="docker-compose-azure.yml" />
     <None Include="docker-compose-integration-vsts.yml" />
+    <None Include="docker-compose-integration-local.yml" />
     <None Include="docker-compose-integration.yml" />
     <None Include="docker-compose.yml" />
     <None Include=".dockerignore" />
