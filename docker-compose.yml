@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   api:
-    image: pollposition
+    image: designmojo.azurecr.io/pollposition:latest
     ports:
       - "5209:80"
     environment:
