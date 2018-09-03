@@ -1,10 +1,10 @@
 version: '3.4'
 
 services:
-  api:
-    image: designmojo.azurecr.io/pollposition:latest
+  pollposition.api:
+    image: designmojo.azurecr.io/pollposition.api:latest
 
-  integration:
+  pollposition.integrationtests:
     entrypoint: dotnet test --logger trx --results-directory /var/temp
     volumes:
       - /opt/vsts/work/_temp:/var/temp

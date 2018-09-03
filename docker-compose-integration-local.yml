@@ -1,10 +1,10 @@
 version: '3.4'
 
 services:
-  api:
-    image: pollposition
+  pollposition.api:
+    image: pollposition.api
 
-  integration:
+  pollposition.integrationtests:
     entrypoint: dotnet test --logger trx --results-directory /app/Tests/testresults
     volumes:
       - ${TEST_RESULT_PATH}:/app/Tests/testresults

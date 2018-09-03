@@ -1,8 +1,8 @@
 version: '3.4'
 
 services:
-  api:
-    image: pollposition
+  pollposition.api:
+    image: pollposition.api
     ports:
       - "5209:80"
     environment:

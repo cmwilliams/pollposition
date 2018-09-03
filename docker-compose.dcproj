@@ -6,7 +6,7 @@
     <ProjectGuid>95274a9f-0b27-4fb3-ac98-b154276a5eed</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
-    <DockerServiceName>api</DockerServiceName>
+    <DockerServiceName>pollposition.api</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
     <None Include=".env.example" />
