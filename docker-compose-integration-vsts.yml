@@ -7,4 +7,4 @@ services:
   pollposition.integrationtests:
     entrypoint: dotnet test --logger trx --results-directory /var/temp
     volumes:
-      - /opt/vsts/work/_temp:/var/temp
+      - /home/vsts/work/_temp:/var/temp
