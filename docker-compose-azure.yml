@@ -1,10 +1,11 @@
 version: '3.4'
 
 services:
-  api:
-    image: designmojo.azurecr.io/pollposition.api:latest
+  pollposition.api:
+    image: designmojo.azurecr.io/pollposition.api
     ports:
       - "80:80"
+      - "443:443"
     environment:
       GoogleKey: AIzaSyCnEOrOAV7rdMu-8orZpkyjzglPIb3n8uE
       RedisConnectionString: redis
