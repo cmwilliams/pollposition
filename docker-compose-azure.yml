@@ -2,17 +2,12 @@ version: '3.4'
 
 services:
   api:
-    image: pollposition_api
+    image: designmojo.azurecr.io/pollposition_api:latest
     ports:
-      - "5209:80"
+      - "80:80"
     environment:
-      GoogleKey: ${GOOGLE_KEY}
+      GoogleKey: AIzaSyCnEOrOAV7rdMu-8orZpkyjzglPIb3n8uE
       RedisConnectionString: redis
-    build:
-      context: .
-      dockerfile: Api/Dockerfile
-      args:
-        NUGET_SOURCE: ${NUGET_SOURCE}
     depends_on:
       - redis
 
