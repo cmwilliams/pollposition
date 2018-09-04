@@ -2,18 +2,14 @@
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NJsonSchema;
 using NSwag;
 using NSwag.AspNetCore;
-using NSwag.AspNetCore.Middlewares;
-using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
-using static Microsoft.AspNetCore.Hosting.Internal.HostingApplication;
 
 namespace Api
 {
@@ -41,20 +37,16 @@ namespace Api
             });
 
             services.AddMediatR();
-            services.AddHttpContextAccessor();
-            services.AddSwagger();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IHttpContextAccessor context)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
             
-
-
             app.UseStatusCodePagesWithReExecute("/error/{0}");
             app.UseExceptionHandler("/error/500");
 
@@ -73,7 +65,7 @@ namespace Api
                     document.Info.Title = "Poll Position";
                     document.Info.Description = "Returns elected officials by address";
                     document.Info.TermsOfService = "None";
-                    document.Info.Contact = new NSwag.SwaggerContact
+                    document.Info.Contact = new SwaggerContact
                     {
                         Name = "Mike Williams",
                         Email = "cmwilliams@gmail.com",
