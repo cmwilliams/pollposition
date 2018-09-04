@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using NJsonSchema;
 using NSwag;
 using NSwag.AspNetCore;
+using NSwag.AspNetCore.Middlewares;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -41,6 +42,7 @@ namespace Api
 
             services.AddMediatR();
             services.AddHttpContextAccessor();
+            services.AddSwagger();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +52,8 @@ namespace Api
             {
                 app.UseDeveloperExceptionPage();
             }
+            
+
 
             app.UseStatusCodePagesWithReExecute("/error/{0}");
             app.UseExceptionHandler("/error/500");
@@ -57,13 +61,14 @@ namespace Api
             app.UseStaticFiles();           
 
             // Enable the Swagger UI middleware and the Swagger generator
-            app.UseSwaggerUi(typeof(Startup).GetTypeInfo().Assembly, settings =>
+            app.UseSwaggerUi3(typeof(Startup).GetTypeInfo().Assembly, settings =>
             {
                 
                 settings.GeneratorSettings.DefaultPropertyNameHandling = PropertyNameHandling.CamelCase;
                 settings.PostProcess = document =>
                 {
-                    document.Schemes.Add(context.HttpContext.Request.IsHttps ? SwaggerSchema.Https : SwaggerSchema.Http);
+                    document.Schemes.Add(SwaggerSchema.Http);
+                    document.Schemes.Add(SwaggerSchema.Https);
                     document.Info.Version = "v1";
                     document.Info.Title = "Poll Position";
                     document.Info.Description = "Returns elected officials by address";
