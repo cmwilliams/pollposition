@@ -63,13 +63,13 @@ namespace Api
                     document.Schemes.Add(SwaggerSchema.Https);
                     document.Info.Version = "v1";
                     document.Info.Title = "Poll Position";
-                    document.Info.Description = "Returns elected officials by address";
+                    document.Info.Description = "API that returns elected officials by address";
                     document.Info.TermsOfService = "None";
                     document.Info.Contact = new SwaggerContact
                     {
                         Name = "Mike Williams",
                         Email = "cmwilliams@gmail.com",
-                        Url = "https://mikewilliams.io"
+                        Url = "https://mikewilliams.io",
                     };
                 };
             });
