@@ -10,7 +10,7 @@ namespace Tests
     public class ApiScenarios : ApiScenarioBase
     {
         [Fact]
-        public async Task First_office_is_president()
+        public async Task First_office_should_be_president()
         {
             using (var server = CreateServer())
             {

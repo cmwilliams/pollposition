@@ -7,17 +7,5 @@ services:
       - "80:80"
       - "443:443"
     environment:
-      GoogleKey: AIzaSyCnEOrOAV7rdMu-8orZpkyjzglPIb3n8uE
-      RedisConnectionString: redis
-    depends_on:
-      - redis
-
-  redis:
-    image: redis:3.2-alpine
-    ports:
-      - "6379:6379"
-    volumes:
-      - redis_data:/data
-
-volumes:  
-  redis_data:
+      GoogleKey: ${GOOGLE_KEY}
+      RedisConnectionString: ${REDIS_CONNECTION_STRING}

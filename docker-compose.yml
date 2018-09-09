@@ -7,12 +7,10 @@ services:
       - "5209:80"
     environment:
       GoogleKey: ${GOOGLE_KEY}
-      RedisConnectionString: redis
+      RedisConnectionString: ${REDIS_CONNECTION_STRING}
     build:
       context: .
       dockerfile: Api/Dockerfile
-      args:
-        NUGET_SOURCE: ${NUGET_SOURCE}
     depends_on:
       - redis
 

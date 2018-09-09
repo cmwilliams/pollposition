@@ -31,4 +31,8 @@
       <ProjectReference Include="..\Api\Api.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="results\" />
+    </ItemGroup>
+
 </Project>

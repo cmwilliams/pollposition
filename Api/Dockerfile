@@ -3,7 +3,6 @@ WORKDIR /app
 EXPOSE 80
 
 FROM microsoft/dotnet:2.1-sdk AS build
-ARG NUGET_SOURCE
 WORKDIR /src
 COPY Api/Api.csproj Api/
 RUN dotnet restore Api/Api.csproj

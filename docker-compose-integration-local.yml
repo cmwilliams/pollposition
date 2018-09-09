@@ -7,4 +7,4 @@ services:
   pollposition.integrationtests:
     entrypoint: dotnet test --logger trx --results-directory /app/Tests/testresults
     volumes:
-      - ${TEST_RESULT_PATH}:/app/Tests/testresults
+      - C:\Final\PollPosition\Tests\results:/app/Tests/testresults
