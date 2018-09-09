@@ -48,15 +48,17 @@ namespace Api.Handlers
                     representativeRequest.Key = _configuration.GoogleKey;
                     var representativeResponse = representativeRequest.Execute();
 
+                    //Transformation of response into the model
                     var offices = representativeResponse.Offices.ToList();
                     var officials = representativeResponse.Officials.ToArray();
 
                     foreach (var office in offices)
                     {
-                        var representative = new Representative();
-
-                        representative.Office = office.Name;
-                        representative.Levels = office.Levels != null ? office.Levels.Select(govtLevel => new Level { GovtLevel = govtLevel }).ToList() : new List<Level>();
+                        var representative = new Representative
+                        {
+                            Office = office.Name,
+                            Levels = office.Levels != null ? office.Levels.Select(govtLevel => new Level { GovtLevel = govtLevel }).ToList() : new List<Level>()
+                        };
 
                         foreach (var indice in office.OfficialIndices)
                         {

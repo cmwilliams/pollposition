@@ -76,6 +76,7 @@ namespace Api
 
             app.UseMvc();
 
+            //Make swagger the default page
             app.Run(c => {
                 c.Response.Redirect("swagger");
                 return Task.CompletedTask;
